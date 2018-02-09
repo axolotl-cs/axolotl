@@ -9,11 +9,34 @@ function getInitialState() {
   return {
     signup: false,
     //user: null,
-    user: {},
+    user: { 
+      username: 'Star',
+      password: '123',
+      location: 'Los Angeles',
+      email: 'star@star.com',
+      invited: [],
+      connected: [],
+      bio: 'Fortunately for us, we installed nodemon earlier which will restart the server any time we make changes to the file. While we are at it, we will set up Foreman to run both the server.js file and the React app at the same time ',
+      skills: 'Javascript, React, HTML, CSS, Mongo, EJS',
+      interests: 'Dancing',
+      image: 'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg',
+    
+    },
     //feed: [],
     feed: [],
     edit: false,
-    profile: null,
+    profile: { username: 'Star',
+    password: '123',
+    location: 'Los Angeles',
+    email: 'star@star.com',
+    invited: [],
+    connected: [],
+    bio: 'Fortunately for us, we installed nodemon earlier which will restart the server any time we make changes to the file. While we are at it, we will set up Foreman to run both the server.js file and the React app at the same time ',
+    skills: 'Javascript, React, HTML, CSS, Mongo, EJS',
+    interests: 'Dancing',
+    image: 'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg'
+    },
+  
     myProfile: true
   };
 }
@@ -54,10 +77,10 @@ class App extends Component {
   }
 
   login(username, password) {
-    console.log('trying to login', username, password);
+    // console.log('trying to login', username, password);
     let that = this;
     return this.post('/login', {username, password}, function(response) {
-      console.log(response);
+      // console.log(response);
       let sep = that.seperateMyLeagues(response.myLeagues)
       that.setState(Object.assign(
         that.state,
@@ -166,9 +189,11 @@ class App extends Component {
         <Login login={this.login} signup={this.signup}/>
       )
     } else if (this.state.profile){
+      console.log("CORRECT ROUTE");
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
-      <Profile user={this.state.profile} edit={this.state.edit} clickFun={clickFun}
-      submit={this.updateProile} myProfile={this.state.myProfile}/>
+      console.log('CLICK FUN');
+      content = <Profile user={ this.state.profile } edit={ this.state.edit } clickFun={ clickFun }
+      submit={ this.updateProile } myProfile={ this.state.myProfile }/>
     } else { // load feed
 
     }
