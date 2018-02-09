@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for Axolotl project.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Axolotl",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "json-odds-api": "^1.0.2",
+    "mongoose": "^5.0.3"
+  }
+}
