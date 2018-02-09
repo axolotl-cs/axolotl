@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const loginController = require('./controllers/loginController.js');
 const userController = require('./controllers/userController.js');
 
+// Function to set test data in db
+const testData = require('./data/testData.js');
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../')));
@@ -32,7 +35,9 @@ app.post('/profile', userController.update);
 // Return list of users to render in feed
 app.get('/feed', userController.getUsers);
 
+// REMOVE ME!!!
+// I set fake data for testing
+testData();
 
 const port = process.env.PORT || 5000;
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
