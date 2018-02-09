@@ -8,8 +8,9 @@ import UserCards from './UserCards.jsx';
 function getInitialState() {
   return {
     signup: false,
+
     //user: null,
-    user: { 
+<!--     user: { 
       username: 'Star',
       password: '123',
       location: 'Los Angeles',
@@ -21,9 +22,11 @@ function getInitialState() {
       interests: 'Dancing',
       image: 'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg',
     
-    },
-    //feed: [],
+    }, -->
+    user: null,
+    // user: {},
     feed: [],
+<!--     // feed: [{username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}],
     edit: false,
     profile: { username: 'Star',
     password: '123',
@@ -35,7 +38,7 @@ function getInitialState() {
     skills: 'Javascript, React, HTML, CSS, Mongo, EJS',
     interests: 'Dancing',
     image: 'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/4/11/1397210130748/Spring-Lamb.-Image-shot-2-011.jpg'
-    },
+    }, -->
   
     myProfile: true
   };
@@ -90,6 +93,13 @@ class App extends Component {
         }
       ));
     });
+    // this.setState(Object.assign(
+    //    this.state,
+    //    {
+    //      user: {username: 'XXXXX'},
+    //      feed: [{username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}],
+    //    }
+    //  ));
   }
 
   toggleSignup() {
@@ -102,23 +112,23 @@ class App extends Component {
 
 
   // what does signup need?
-  signup(username, password, email, location) {
-    console.log('trying to signup', username, password);
+  signup(username, password, email) {
+    console.log('trying to signup', username, password, email);
     let that = this;
-    return this.post('/signup', {username, password}, function(response) {
-      console.log(response);
-
-      that.setState(Object.assign(
-        that.state,
-        {
-          edit: true,
-          profile: response.user,
-          user: response.user,
-          feed: response.feed,
-          myProfile: true
-        }
-      ));
-    });
+    // return this.post('/signup', {username, password, email}, function(response) {
+    //   console.log(response);
+    //
+    //   that.setState(Object.assign(
+    //     that.state,
+    //     {
+    //       edit: true,
+    //       profile: response.user,
+    //       user: response.user,
+    //       feed: response.feed,
+    //       myProfile: true
+    //     }
+    //   ));
+    // });
   }
 
   updateProile(user) {
@@ -185,8 +195,9 @@ class App extends Component {
 
     let content;
     if (!this.state.user) {
+      let clickFun = (this.state.signup) ? this.signup : this.login;
       content = (
-        <Login login={this.login} signup={this.signup}/>
+        <Login isSignup={this.state.signup} clickFun={clickFun} toggle={this.toggleSignup}/>
       )
     } else if (this.state.profile){
       console.log("CORRECT ROUTE");
@@ -194,8 +205,11 @@ class App extends Component {
       console.log('CLICK FUN');
       content = <Profile user={ this.state.profile } edit={ this.state.edit } clickFun={ clickFun }
       submit={ this.updateProile } myProfile={ this.state.myProfile }/>
-    } else { // load feed
 
+    } else { // load feed
+      content = (
+        <Feed user={this.state.user} feed={this.state.feed} connect={this.connect}/>
+      )
     }
     // TODO: the #clear button doesn't work yet.
     return (
