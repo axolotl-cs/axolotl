@@ -8,10 +8,10 @@ import UserCards from './UserCards.jsx';
 function getInitialState() {
   return {
     signup: false,
-    //user: null,
-    user: {},
-    //feed: [],
+    user: null,
+    // user: {},
     feed: [],
+    // feed: [{username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}],
     edit: false,
     profile: null,
     myProfile: true
@@ -67,6 +67,13 @@ class App extends Component {
         }
       ));
     });
+    // this.setState(Object.assign(
+    //    this.state,
+    //    {
+    //      user: {username: 'XXXXX'},
+    //      feed: [{username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}],
+    //    }
+    //  ));
   }
 
   toggleSignup() {
@@ -79,23 +86,23 @@ class App extends Component {
 
 
   // what does signup need?
-  signup(username, password, email, location) {
-    console.log('trying to signup', username, password);
+  signup(username, password, email) {
+    console.log('trying to signup', username, password, email);
     let that = this;
-    return this.post('/signup', {username, password}, function(response) {
-      console.log(response);
-
-      that.setState(Object.assign(
-        that.state,
-        {
-          edit: true,
-          profile: response.user,
-          user: response.user,
-          feed: response.feed,
-          myProfile: true
-        }
-      ));
-    });
+    // return this.post('/signup', {username, password, email}, function(response) {
+    //   console.log(response);
+    //
+    //   that.setState(Object.assign(
+    //     that.state,
+    //     {
+    //       edit: true,
+    //       profile: response.user,
+    //       user: response.user,
+    //       feed: response.feed,
+    //       myProfile: true
+    //     }
+    //   ));
+    // });
   }
 
   updateProile(user) {
@@ -162,14 +169,19 @@ class App extends Component {
 
     let content;
     if (!this.state.user) {
+      let clickFun = (this.state.signup) ? this.signup : this.login;
       content = (
-        <Login login={this.login} signup={this.signup}/>
+        <Login isSignup={this.state.signup} clickFun={clickFun} toggle={this.toggleSignup}/>
       )
     } else if (this.state.profile){
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
-      <Profile user={this.state.profile} edit={this.state.edit} clickFun={this.state.clickFun}/>
+      content = (
+        <Profile user={this.state.profile} edit={this.state.edit} clickFun={this.state.clickFun}/>
+      )
     } else { // load feed
-
+      content = (
+        <Feed user={this.state.user} feed={this.state.feed} connect={this.connect}/>
+      )
     }
     // TODO: the #clear button doesn't work yet.
     return (
