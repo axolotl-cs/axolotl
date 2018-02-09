@@ -167,7 +167,8 @@ class App extends Component {
       )
     } else if (this.state.profile){
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
-      <Profile user={this.state.profile} edit={this.state.edit} clickFun={this.state.clickFun}/>
+      <Profile user={this.state.profile} edit={this.state.edit} clickFun={clickFun}
+      submit={this.updateProile} myProfile={this.state.myProfile}/>
     } else { // load feed
 
     }
