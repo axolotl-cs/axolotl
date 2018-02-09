@@ -1,19 +1,19 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const getResults = require('./controllers/getResults');
-const storeResult = require('./controllers/storeResult');
+const loginController = require('./controllers/loginController.js');
+
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../')));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile('index.html');
 });
 
-app.get('/results', getResults);
-app.post('/results', storeResult);
+app.post('/login', loginController.login);
+app.post('/signup', loginController.signup);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
