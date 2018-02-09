@@ -4,7 +4,7 @@ const UserCards = (props) => {
   console.log(props);
   return (
       <div>
-        <h3>{props.user.username}</h3>
+        <h3>XXXXXXXXXXXXXX</h3>
       </div>
   );
 };
