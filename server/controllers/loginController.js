@@ -16,7 +16,7 @@ loginController.login = (req, res, next) => {
     if (result[0].username) {
       data.user = result;
     } else {
-      res.json('Not found.');
+      res.status(400).json('Not found.');
       return next();
     }
   })

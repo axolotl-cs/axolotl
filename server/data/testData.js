@@ -29,7 +29,6 @@ const testData = () => {
     email: 'afuselier23@gmail.com',
     bio: 'I love programming!',
     skills: 'Javascript',
-    image,
   });
 
   const eric = new User({
@@ -39,7 +38,6 @@ const testData = () => {
     email: 'eric.rudolph.carrillo@gmail.com',
     bio: 'I love surfing!',
     skills: 'Javascript',
-    image,
   });
 
   const john = new User({
@@ -49,27 +47,24 @@ const testData = () => {
     email: 'john@gmail.com',
     bio: 'I love programming!',
     skills: 'Javascript',
-    image,
   });
 
-  const max = new User ({
+  const max = new User({
     username: 'max',
     password: 'ilovetesting',
     location: 'Playa Vista',
     email: 'max@gmail.com',
     bio: 'I love programming!',
     skills: 'Javascript',
-    image,
   });
 
-  const star = new User ({
+  const star = new User({
     username: 'star',
     password: 'ilovetesting',
     location: 'Playa Vista',
     email: 'star@gmail.com',
     bio: 'I love programming!',
     skills: 'Javascript',
-    image,
   });
 
   andrew.save();
