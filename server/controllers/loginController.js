@@ -4,6 +4,7 @@ const loginController = {};
 
 // Handle user login
 loginController.login = (req, res, next) => {
+  console.log(req.body);
   const user = {
     username: req.body.username,
     password: req.body.password,
@@ -13,10 +14,10 @@ loginController.login = (req, res, next) => {
   // Look for the user with the given username and password
   User.find(user, (err, result) => {
     if (err) throw err;
-    if (result[0].username) {
+    if (result[0]) {
       data.user = result;
     } else {
-      res.status(400).json('Not found.');
+      res.status(200).json('Not found.');
       return next();
     }
   })
