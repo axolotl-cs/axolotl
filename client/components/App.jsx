@@ -156,6 +156,8 @@ class App extends Component {
     }
 
   viewProfile(user) {
+    console.log('Switching to Profile', this.state.user);
+    if (typeof user.myProfile !== 'boolean') {user = this.state.user};
     console.log('Switching to Profile', user);
     let that = this;
     let mp = (this.state.user === user);
