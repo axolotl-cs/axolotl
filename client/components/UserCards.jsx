@@ -8,10 +8,9 @@ const UserCards = (props) => {
         <h3>{props.user.username}</h3>
         <p className="location-userCard">{props.user.location}</p>
         <div className='button-userCard'>
-        {/* <button onClick={() => 
-          {props.user.connect(user)}/>
-        Connect
-      </button> */}
+          <button onClick={() => props.connect(user)}>
+          Connect
+          </button>
         </div>
       </div>
   );

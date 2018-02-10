@@ -20,6 +20,7 @@
     "mongoose": "^5.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-materialize": "^1.1.2",
     "redux": "^3.7.2",
     "request": "^2.83.0"
   },
