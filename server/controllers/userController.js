@@ -40,10 +40,18 @@ userController.invite = (req, res) => {
 // Accept a request to pair
 userController.connect = (req, res) => {
   const { username, target } = req.body;
+  let email = '';
   User.update({ username }, { $push: { connected: target } })
     .then(() => {
       User.find({}, (err, userList) => {
+        if (err) throw err;
         res.status(200).json(userList);
+      });
+    })
+    .then(() => {
+      User.find({ username }, (err, result) => {
+        if (err) throw err;
+        email = result.email;
       });
     })
     .then(() => {
@@ -52,11 +60,10 @@ userController.connect = (req, res) => {
           from: 'axolotl.codesmith@gmail.com',
           to: result[0].email,
           subject: 'New Pair Programming Connect',
-          html: `You've connected with ${username}`,
+          html: `Contact your potential abductor: ${username} (${email})`,
         };
         transporter.sendMail(mailOptions, (err, info) => {
           if (err) throw err;
-          console.log(info);
         });
       });
     })
@@ -71,8 +78,8 @@ userController.update = (req, res) => {
   // The post request includes a user property that stores the
   // contents of the user object with updates
   const { user } = req.body;
-  const { username, password, location, email, bio, skills, interts, image } = user;
-  const updates = { username, password, location, email, bio, skills, interts, image };
+  const { password, location, bio, email, skills, intrests } = user;
+  const updates = { password, email, location, bio, skills, intrests };
   User.update({ username: user.username }, updates)
     .then(() => {
       User.find({}, (err, userList) => {
