@@ -78,8 +78,8 @@ userController.update = (req, res) => {
   // The post request includes a user property that stores the
   // contents of the user object with updates
   const { user } = req.body;
-  const { password, location, email, bio, skills, interts, image } = user;
-  const updates = { password, location, email, bio, skills, interts, image };
+  const { password, location, bio, email, skills, intrests } = user;
+  const updates = { password, email, location, bio, skills, intrests };
   User.update({ username: user.username }, updates)
     .then(() => {
       User.find({}, (err, userList) => {
