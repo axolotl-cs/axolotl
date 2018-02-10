@@ -15,9 +15,9 @@ const userSchema = new Schema({
   email: { type: String, unique: true },
   invited: [String], // Store the userId of the people you've invited to pair
   connected: [String], // Store the userId of the people you've connected with
-  bio: { type: String },
-  skills: [String],
-  interests: [String],
+  bio: String,
+  skills: String,
+  interests: String,
   image: { data: Buffer, contentType: String },
 });
 
