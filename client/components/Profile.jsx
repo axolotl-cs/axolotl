@@ -15,48 +15,47 @@ class Profile extends Component {
     let connectOrEdit = (!this.props.myProfile) ? 'Connect' : 'Edit';
     let user = this.props.user;
     let clickFun = this.props.clickFun;
+    console.log('user', user);
 
     let submit = (
       <input type="submit" value="Submit" onClick={() => {
 
-        // have to make this take new info later
-        // let username = document.getElementById('userIn').value;
-        // let password = document.getElementById('passIn').value;
-        // let email = (props.isSignup) ? document.getElementById('emailIn').value : null;
-        // console.log(username, password, email);
+        // have to update new user obect with new info
+        let bio = document.getElementById('bioIn').value;
+        let skills = document.getElementById('skillsIn').value;
+        let interests = document.getElementById('interestsIn').value;
+        console.log(bio, skills, interests);
 
         let updatedUser = Object.assign(
           user,
-          {}
+          {bio, skills, interests}
         )
         this.props.submit(updatedUser);
       }}/>
     )
     submit = (this.props.edit) ?  submit : '';
-
+    let disabled = "disabled";
     return (
       <div id="profile">
-        <input type="submit" value={connectOrEdit} onClick={() => {
-          clickFun(user);
-        }}/>
+        <input type="submit" value={connectOrEdit} onClick={() => clickFun(user)} />
         <div className="imgStyle">
-          <img src={this.props.user.image}/>
+          <img src={user.image} />
         </div>
         <div className="bio">
           <h4>Bio</h4>
-          <p className="bioStyles"> {this.props.user.bio}</p>
+          <input type="text" id="bioIn" defaultValue = {user.bio} className="bioStyles" disabled={(!this.props.edit) ? true : false} />
         </div>
         <div className="skills">
           <h4>Skills</h4>
-          <p className="skillsStyles">{this.props.user.skills}</p>
+          <input text='text' id="skillsIn" className="skillsStyles" defaultValue="Javscript" disabled={(!this.props.edit) ? true: false} />
         </div>
         <div className="interests">
           <h4>Interests</h4>
-          <p className="interestStyles">{this.props.user.interests}</p>
+          <input type="text"  id="interestsIn" className="interestStyles" defaultValue={user.interests} disabled={(!this.props.edit) ? true: false} />
         </div>
         {submit}
       </div>
-    );
+    )
   }
 
 }

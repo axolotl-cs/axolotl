@@ -28,6 +28,8 @@ class App extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
     this.viewProfile = this.viewProfile.bind(this);
+    this.toFeed = this.toFeed.bind(this);
+    this.signout = this.signout.bind(this);
 
     this.state = getInitialState();
   }
@@ -154,6 +156,8 @@ class App extends Component {
     }
 
   viewProfile(user) {
+    console.log('Switching to Profile', this.state.user);
+    if (typeof user.myProfile !== 'boolean') {user = this.state.user};
     console.log('Switching to Profile', user);
     let that = this;
     let mp = (this.state.user === user);
@@ -184,6 +188,7 @@ class App extends Component {
 
 
   toggleEdit(user) {
+    if(!user) user = this.state.user;
     console.log('Going to edit mode', user);
     this.setState(Object.assign(
       this.state,
@@ -226,6 +231,7 @@ class App extends Component {
     return (
       <div>
         <h1> We are rendering APP</h1>
+        {header}
         {content}
       </div>
     );

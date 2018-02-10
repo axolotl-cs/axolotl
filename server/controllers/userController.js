@@ -88,7 +88,8 @@ userController.connect = (req, res) => {
 userController.update = (req, res) => {
   // The post request includes a user property that stores the
   // contents of the user object with updates
-  const { password, location, bio, email, skills, interests } = req.body;
+  let user = req.body;
+  const { password, location, bio, email, skills, interests } = user;
   const updates = { password, email, location, bio, skills, interests };
   User.update({ username: user.username }, updates)
     .then(() => {
