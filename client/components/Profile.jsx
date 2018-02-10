@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
+// import CardExampleWithAvatar from './CardExampleWithAvatar.jsx'
 
 // user object passed
 // edit: boolean
@@ -12,7 +14,8 @@ class Profile extends Component {
 
   render() {
 
-    let connectOrEdit = (!this.props.myProfile) ? 'Connect' : 'Edit';
+    // let connectOrEdit = (!this.props.myProfile) ? 'Connect' : 'Edit';
+    let connectOrEdit = 'Connect';
     let user = this.props.user;
     let clickFun = this.props.clickFun;
     console.log('user', user);
@@ -34,26 +37,51 @@ class Profile extends Component {
       }}/>
     )
     submit = (this.props.edit) ?  submit : '';
-    let disabled = "disabled";
+
     return (
-      <div id="profile">
-        <input type="submit" value={connectOrEdit} onClick={() => clickFun(user)} />
-        <div className="imgStyle">
-          <img src={user.image} />
+    
+      <div>
+      
+        <div className="masthead responsive-image">
+          <header className="entry-header">
+            {/* <h1 className="entry-title">Headding Spaced with padding</h1>
+            <h2 className="entry-subtitle">Some sort of lovely supporting title</h2> */}
+            </header>
         </div>
-        <div className="bio">
-          <h4>Bio</h4>
-          <input type="text" id="bioIn" defaultValue={user.bio} className="bioStyles" disabled={(!this.props.edit) ? true : false} />
-        </div>
-        <div className="skills">
-          <h4>Skills</h4>
-          <input text='text' id="skillsIn" className="skillsStyles" defaultValue={user.skills} disabled={(!this.props.edit) ? true: false} />
-        </div>
-        <div className="interests">
-          <h4>Interests</h4>
-          <input type="text"  id="interestsIn" className="interestStyles" defaultValue={user.interests} disabled={(!this.props.edit) ? true: false} />
-        </div>
-        {submit}
+            <div id="profile">
+              <input type="submit" className="buttonConnect btn btn-lg" value={connectOrEdit} onClick={() => {
+                clickFun(user);
+              }}/>
+              <div className="imgStyle">
+                {/* <img src={user.image} />   */}
+                <img src="https://imgix.ranker.com/user_node_img/105/2097374/original/steve-jobs-people-in-film-photo-u10?w=650&q=50&fm=jpg&fit=crop&crop=faces" className="profile-Image"/>
+              </div>
+                <div id='userInfo'>
+                    <div id="bio">
+                      <h4>Bio</h4>
+                      <textarea className="bioStyles"  id='bioIn' defaultValue={user.bio} disable={(!this.props.edit).toString()}/>
+                    </div>
+                    <div className="skills">
+                      <h4>Skills</h4>
+                      <textarea className="skillsStyle" id='skillsIn' defaultValue={user.skills} disabled={(!this.props.edit).toString()} />
+                    </div>
+                    <div className="interests">
+                      <h4>Interests</h4>
+                      <textarea className="interestStyle" id="interestsIn" defaultValue={user.interests} disabled={(!this.props.edit).toString()} />
+                    </div>
+                    <div className="languages">
+                     <img src="https://i.ytimg.com/vi/r8TKmjgKgB8/hqdefault.jpg"/>
+                     <br/>
+                     {/* <img src="https://cdn.goconqr.com/uploads/flash_card/image_question/9840931/desktop_05282061-3ae3-4bc1-871c-655c18375e68.png"/> */}
+                     <br/>
+                     <img src="/Users/admin/github/codesmith/axolotl/css/images/software.png"/>
+                     <img src="/Users/admin/github/codesmith/axolotl/css/images/software.png"/>
+                    </div>
+                </div>
+              {submit}
+            </div>
+
+     
       </div>
     )
   }

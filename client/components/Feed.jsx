@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import React, { Component } from 'react';
 import UserCards from './UserCards.jsx';
 
+
 class Feed extends Component {
   constructor(props) {
     super(props);

@@ -1,0 +1,123 @@
+/* Profile STYLING */
+/* 
+ body {
+   background: #1D212A;
+ } */
+
+ /* //PROFILE STYLING */
+
+ /* .responsive-image {
+  background-image: url(client/images/science-formulas-4.jpg);
+}
+
+@media screen and (min-width: 320px) {
+  .responsive-image {
+    background-image: url(http://placehold.it/640x400);
+  }
+}
+@media screen and (min-width: 640px)
+{
+  .responsive-image {
+    background-image: url(http://placehold.it/1024x1024);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .responsive-image {
+    background-image: url(client/images/science-formulas-4.jpg);
+  }
+} */
+body {
+  background: #1D212A;
+  color: whitesmoke;
+} 
+
+ .masthead {
+  background-image: url("https://www.hongkiat.com/blog/wp-content/uploads/css3-circular-elliptical-gradient/ellipse-gradient-syntax.jpg");
+  overflow: hidden;
+  color: rgb(230, 225, 225);
+  padding: 1em;
+  /* border-top: 6px solid #9BA800; */
+  background-color: #404040;
+  height: 500px;
+  width: 100%;
+  
+
+  &.responsive-image {
+    background-position: center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+  }
+}
+
+.buttonConnect {
+  position: relative;
+  top: -22px;
+  bottom: 5px;
+  left: 986px;
+  right: 14px;
+  width: 261px;
+  height: 73px;
+}
+
+.profile-Image {
+  position: relative;
+  top: -31px;
+  height: 250px;
+  width: 250px;
+  border: 5px solid white;
+}
+
+
+textarea {
+  margin-top: 11px;
+  margin-left: -2px;
+  width: 500px;
+  height: 100px;
+  background: none repeat scroll 0 0 whitesmoke;
+  border-color: -moz-use-text-color rgb(194, 125, 125) #FFFFFF -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: black;
+  /* font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+
+
+textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+#bio {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+#userInfo {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+}
+
+.languages {
+  position: relative;
+  float: right;
+  top: -503px;
+  right -49px;
+  padding-top: 15px;
+}
