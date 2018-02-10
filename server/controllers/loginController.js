@@ -45,6 +45,7 @@ loginController.signup = (req, res, next) => {
     .then(() => {
       User.find({ username }, (err, result) => {
         if (err) throw err;
+        console.log(result);
         data.user = result[0];
       });
     })
