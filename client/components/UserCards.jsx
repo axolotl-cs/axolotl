@@ -4,7 +4,14 @@ const UserCards = (props) => {
   console.log(props);
   return (
       <div>
-        <h3>XXXXXXXXXXXXXX</h3>
+        <img src={props.user.image} className='user-img'/>
+        <h3>{props.user.username}</h3>
+        <p className="location-userCard">{props.user.location}</p>
+        <div className='button-userCard'>
+          <button onClick={() => props.connect(user)}>
+          Connect
+          </button>
+        </div>
       </div>
   );
 };

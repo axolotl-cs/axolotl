@@ -26,7 +26,7 @@ class App extends Component {
     this.toggleSignup = this.toggleSignup.bind(this);
     this.connect = this.connect.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.updateProile = this.updateProile.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
     this.viewProfile = this.viewProfile.bind(this);
 
     this.state = getInitialState();
@@ -89,7 +89,6 @@ class App extends Component {
     let that = this;
     return this.post('/signup', {username, password, email}, function(response) {
       console.log(response);
-
       that.setState(Object.assign(
         that.state,
         {
@@ -103,35 +102,61 @@ class App extends Component {
     });
   }
 
-  updateProile(user) {
+  updateProfile(user) {
     console.log('Editing User Profile', user);
     let that = this;
-    // return this.post('/profile/edit', user, function(response) {
-    //   console.log(response);
-    // 
-    //   that.setState(Object.assign(
-    //     that.state,
-    //     {
-    //       user: response.user,
-    //       edit: false
-    //     }
-    //   ));
-    // });
+    return this.post('/profile', user, function(response) {
+      console.log(response);
+
+      that.setState(Object.assign(
+        that.state,
+        {
+          user: response,
+          edit: false
+        }
+      ));
+    });
+  }
+
+  getFeed() {
+    return this.post('/feed', {}, function(response) {
+      console.log(response);
+
+      that.setState(Object.assign(
+        that.state,
+        {
+          feed: response
+        }
+      ));
+    });
   }
 
   // when click connect button on another user
   connect(user) {
-    console.log('Requesting connection with other user', user);
-    let that = this;
-    // return this.post('/profil/edit', user, function(response) {
-    //   console.log(response);
-    //
-    //   that.setState(Object.assign(
-    //     that.state,
-    //     //{user: response.user}
-    //   ));
-    // });
-  }
+    if (user.invites.indexOf(this.state.user.username) < 0) {
+      console.log('Inviting other user', user);
+      let that = this;
+      return this.post('/invite', {username: that.state.user.username, target: user.username }, function(response) {
+        console.log(response);
+
+        that.setState(Object.assign(
+          that.state,
+          {user: response.user}
+        ));
+      });
+    } else {
+      let that = this;
+        console.log('Connecting with other user', user);
+      return this.post('/connect', {username: that.state.user.username, target: user.username }, function(response) {
+        console.log(response);
+
+        that.setState(Object.assign(
+          that.state,
+          {user: response.user}
+        ));
+      });
+    }
+    }
 
   viewProfile(user) {
     console.log('Switching to Profile', user);
@@ -155,14 +180,6 @@ class App extends Component {
   }
 
   render() {
-    const { rows, turn, winner, gameList } = this.state;
-    const handleClick = this.handleClick;
-
-    //so I can pass into map
-    const chooseLeague = this.chooseLeague;
-    const joinLeague = this.joinLeague;
-    const assignPlayer = this.assignPlayer;
-
     console.log(this.state);
 
     let content;
@@ -176,7 +193,7 @@ class App extends Component {
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
       console.log('CLICK FUN');
       content = <Profile user={ this.state.profile } edit={ this.state.edit } clickFun={ clickFun }
-      submit={ this.updateProile } myProfile={ this.state.myProfile }/>
+      submit={ this.updateProfile } myProfile={ this.state.myProfile }/>
 
     } else { // load feed
       content = (
