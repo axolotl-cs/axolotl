@@ -8,7 +8,7 @@ const UserCards = (props) => {
         <h3>{props.user.username}</h3>
         <p className="location-userCard">{props.user.location}</p>
         <div className='button-userCard'>
-          <button onClick={() => props.connect(user)}>
+          <button onClick={() => props.connect(props.user)}>
           Connect
           </button>
         </div>
@@ -17,4 +17,3 @@ const UserCards = (props) => {
 };
 
 export default UserCards;
-
