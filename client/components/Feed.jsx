@@ -9,10 +9,13 @@ class Feed extends Component {
   }
 
   render() {
-    console.log('XXXXX', this.props);
+    console.log('feed props', this.props);
     //console.log(props);
     let connect = this.props.connect;
-    let feed = this.props.feed.map(function(feedUser, index) {
+    let userComp = this.props.user;
+    let feed = this.props.feed.filter(function(u){
+      return (u.username !== userComp.username);
+    }).map(function(feedUser, index) {
       return <UserCards key={index} user={feedUser} connect={connect}/>
     });
 
