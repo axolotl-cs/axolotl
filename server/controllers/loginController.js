@@ -4,7 +4,6 @@ const loginController = {};
 
 // Handle user login
 loginController.login = (req, res, next) => {
-  console.log(req.body);
   const user = {
     username: req.body.username,
     password: req.body.password,
