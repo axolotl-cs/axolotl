@@ -184,11 +184,7 @@ class App extends Component {
       )
     }
     // TODO: the #clear button doesn't work yet.
-    return (
-      <div>
-        {content}
-      </div>
-    );
+
 
   }
 }
