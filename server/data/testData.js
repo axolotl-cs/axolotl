@@ -18,7 +18,7 @@ const testData = () => {
     username: 'andrew',
     password: 'ilovetesting',
     location: 'Playa Vista',
-    email: 'andrew@gmail.com',
+    email: 'afuselier23@gmail.com',
     bio: 'I love programming!',
   });
 

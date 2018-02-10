@@ -39,5 +39,5 @@
     "react-router": "^4.2.0",
     "webpack": "^3.10.0"
   },
-  "proxy": "http://http://localhost:5000/"
+  "proxy": "http://localhost:5000/"
 }
