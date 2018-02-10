@@ -58,6 +58,9 @@ class Profile extends Component {
               </div>
                 <div id='userInfo'>
                     <div id="bio">
+                      <h4>{user.username}</h4>
+                    </div>
+                    <div id="bio">
                       <h4>Bio</h4>
                       <textarea className="bioStyles"  id='bioIn' defaultValue={user.bio} disabled={(!this.props.edit)}/>
                     </div>

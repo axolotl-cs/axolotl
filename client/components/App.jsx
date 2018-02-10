@@ -235,7 +235,6 @@ class App extends Component {
 
     return (
       <div>
-        <h1> We are rendering APP</h1>
         {header}
         {content}
       </div>
