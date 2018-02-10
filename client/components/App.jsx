@@ -117,19 +117,45 @@ class App extends Component {
     });
   }
 
-  // when click connect button on another user
-  connect(user) {
-    console.log('Requesting connection with other user', user);
-    let that = this;
-    return this.post('/invite', {username: that.state.user.username, target: user.username }, function(response) {
+  getFeed() {
+    return this.post('/feed', {}, function(response) {
       console.log(response);
 
       that.setState(Object.assign(
         that.state,
-        //{user: response.user}
+        {
+          feed: response
+        }
       ));
     });
   }
+
+  // when click connect button on another user
+  connect(user) {
+    if (user.invites.indexOf(this.state.user.username) < 0) {
+      console.log('Inviting other user', user);
+      let that = this;
+      return this.post('/invite', {username: that.state.user.username, target: user.username }, function(response) {
+        console.log(response);
+
+        that.setState(Object.assign(
+          that.state,
+          {user: response.user}
+        ));
+      });
+    } else {
+      let that = this;
+        console.log('Connecting with other user', user);
+      return this.post('/connect', {username: that.state.user.username, target: user.username }, function(response) {
+        console.log(response);
+
+        that.setState(Object.assign(
+          that.state,
+          {user: response.user}
+        ));
+      });
+    }
+    }
 
   viewProfile(user) {
     console.log('Switching to Profile', user);
