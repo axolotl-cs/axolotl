@@ -14,7 +14,7 @@ loginController.login = (req, res, next) => {
   User.find(user, (err, result) => {
     if (err) throw err;
     if (result[0]) {
-      data.user = result;
+      data.user = result[0];
     } else {
       res.status(200).json('Not found.');
       return next();
