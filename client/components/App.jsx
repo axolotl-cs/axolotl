@@ -88,7 +88,6 @@ class App extends Component {
     let that = this;
     return this.post('/signup', {username, password, email}, function(response) {
       console.log(response);
-
       that.setState(Object.assign(
         that.state,
         {
@@ -105,17 +104,17 @@ class App extends Component {
   updateProile(user) {
     console.log('Editing User Profile', user);
     let that = this;
-    // return this.post('/profile/edit', user, function(response) {
-    //   console.log(response);
-    // 
-    //   that.setState(Object.assign(
-    //     that.state,
-    //     {
-    //       user: response.user,
-    //       edit: false
-    //     }
-    //   ));
-    // });
+    return this.post('/profile', user, function(response) {
+      console.log(response);
+
+      that.setState(Object.assign(
+        that.state,
+        {
+          user: response.user,
+          edit: false
+        }
+      ));
+    });
   }
 
   // when click connect button on another user
