@@ -22,6 +22,14 @@ const testData = () => {
     bio: 'I love programming!',
   });
 
+  const eric = new User({
+    username: 'eric',
+    password: 'ilovetesting',
+    location: 'Venice',
+    email: 'eric.rudolph.carrillo@gmail.com',
+    bio: 'I love surfing!',
+  });
+
   const john = new User({
     username: 'john',
     password: 'ilovetesting',
@@ -47,6 +55,7 @@ const testData = () => {
   });
 
   andrew.save();
+  eric.save();
   john.save();
   max.save();
   star.save();

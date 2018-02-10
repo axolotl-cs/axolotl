@@ -8,7 +8,7 @@ loginController.login = (req, res, next) => {
     username: req.body.username,
     password: req.body.password,
   };
-  // data is the object that is sent back to the client
+  // Object to respond to client with
   const data = {};
   // Look for the user with the given username and password
   User.find(user, (err, result) => {
@@ -20,7 +20,6 @@ loginController.login = (req, res, next) => {
       return next();
     }
   })
-  // If you found the username add the list of users to data and send back with response
     .then(() => {
       User.find({}, (err, userList) => {
         if (err) throw err;
@@ -39,13 +38,21 @@ loginController.login = (req, res, next) => {
 loginController.signup = (req, res, next) => {
   const { username, password, email } = req.body;
   const newUser = new User({ username, password, email });
-
+  // Object to respond to client with
+  const data = {};
   // Save the user and send back the user object
   newUser.save()
     .then(() => {
-      User.find({ username }, (err, user) => {
+      User.find({ username }, (err, result) => {
         if (err) throw err;
-        res.json(user);
+        data.user = result[0];
+      });
+    })
+    .then(() => {
+      User.find({}, (err, userList) => {
+        if (err) throw err;
+        data.list = userList;
+        res.status(200).json(data);
         return next();
       });
     })
