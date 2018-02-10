@@ -28,6 +28,7 @@ userController.invite = (req, res) => {
   User.update({ username }, { $push: { invited: target } })
     .then(() => {
       User.find({ username }, (err, user) => {
+        if (err) throw err;
         res.status(200).json(user[0]);
       });
     })
