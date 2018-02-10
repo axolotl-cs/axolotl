@@ -87,13 +87,12 @@ userController.connect = (req, res) => {
 userController.update = (req, res) => {
   // The post request includes a user property that stores the
   // contents of the user object with updates
-  const { user } = req.body;
-  const { password, location, bio, email, skills, interests } = user;
+  const { password, location, bio, email, skills, interests } = req.body;
   const updates = { password, email, location, bio, skills, interests };
   User.update({ username: user.username }, updates)
     .then(() => {
-      User.find({}, (err, userList) => {
-        res.status(200).json(userList);
+      User.find({username: user.username }, (err, user) => {
+        res.status(200).json(user);
       });
     })
     .catch((err) => {

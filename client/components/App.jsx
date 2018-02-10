@@ -25,7 +25,7 @@ class App extends Component {
     this.toggleSignup = this.toggleSignup.bind(this);
     this.connect = this.connect.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.updateProile = this.updateProile.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
     this.viewProfile = this.viewProfile.bind(this);
 
     this.state = getInitialState();
@@ -101,7 +101,7 @@ class App extends Component {
     });
   }
 
-  updateProile(user) {
+  updateProfile(user) {
     console.log('Editing User Profile', user);
     let that = this;
     return this.post('/profile', user, function(response) {
@@ -110,7 +110,7 @@ class App extends Component {
       that.setState(Object.assign(
         that.state,
         {
-          user: response.user,
+          user: response,
           edit: false
         }
       ));
@@ -192,7 +192,7 @@ class App extends Component {
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
       console.log('CLICK FUN');
       content = <Profile user={ this.state.profile } edit={ this.state.edit } clickFun={ clickFun }
-      submit={ this.updateProile } myProfile={ this.state.myProfile }/>
+      submit={ this.updateProfile } myProfile={ this.state.myProfile }/>
 
     } else { // load feed
       content = (
