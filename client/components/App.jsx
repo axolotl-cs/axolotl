@@ -146,7 +146,7 @@ class App extends Component {
   }
 
   toggleEdit(user) {
-    console.log('Requesting connection with other user', user);
+    console.log('Going to edit mode', user);
     that.setState(Object.assign(
       that.state,
       {edit: !this.state.edit}
