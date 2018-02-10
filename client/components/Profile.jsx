@@ -39,9 +39,9 @@ class Profile extends Component {
     submit = (this.props.edit) ?  submit : '';
 
     return (
-    
+
       <div>
-      
+
         <div className="masthead responsive-image">
           <header className="entry-header">
             {/* <h1 className="entry-title">Headding Spaced with padding</h1>
@@ -59,20 +59,19 @@ class Profile extends Component {
                 <div id='userInfo'>
                     <div id="bio">
                       <h4>Bio</h4>
-                      <textarea className="bioStyles"  id='bioIn' defaultValue={user.bio} disable={(!this.props.edit).toString()}/>
+                      <textarea className="bioStyles"  id='bioIn' defaultValue={user.bio} disabled={(!this.props.edit)}/>
                     </div>
                     <div className="skills">
                       <h4>Skills</h4>
-                      <textarea className="skillsStyle" id='skillsIn' defaultValue={user.skills} disabled={(!this.props.edit).toString()} />
+                      <textarea className="skillsStyle" id='skillsIn' defaultValue={user.skills} disabled={(!this.props.edit)} />
                     </div>
                     <div className="interests">
                       <h4>Interests</h4>
-                      <textarea className="interestStyle" id="interestsIn" defaultValue={user.interests} disabled={(!this.props.edit).toString()} />
+                      <textarea className="interestStyle" id="interestsIn" defaultValue={user.interests} disabled={(!this.props.edit)} />
                     </div>
                     <div className="languages">
                      <img src="https://i.ytimg.com/vi/r8TKmjgKgB8/hqdefault.jpg"/>
                      <br/>
-                     {/* <img src="https://cdn.goconqr.com/uploads/flash_card/image_question/9840931/desktop_05282061-3ae3-4bc1-871c-655c18375e68.png"/> */}
                      <br/>
                      <img src="/Users/admin/github/codesmith/axolotl/css/images/software.png"/>
                      <img src="/Users/admin/github/codesmith/axolotl/css/images/software.png"/>
@@ -81,7 +80,7 @@ class Profile extends Component {
               {submit}
             </div>
 
-     
+
       </div>
     )
   }

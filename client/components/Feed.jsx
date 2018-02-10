@@ -13,10 +13,11 @@ class Feed extends Component {
     //console.log(props);
     let connect = this.props.connect;
     let userComp = this.props.user;
+    let toProfile = this.props.toProfile;
     let feed = this.props.feed.filter(function(u){
       return (u.username !== userComp.username);
     }).map(function(feedUser, index) {
-      return <UserCards key={index} user={feedUser} connect={connect}/>
+      return <UserCards key={index} toProfile={toProfile} user={feedUser} connect={connect}/>
     });
 
     return (

@@ -12,6 +12,11 @@ const UserCards = (props) => {
           Connect
           </button>
         </div>
+        <div className='button-userCard'>
+          <button onClick={() => props.toProfile(props.user)}>
+          pprofle
+          </button>
+        </div>
       </div>
   );
 };
