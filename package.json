@@ -40,5 +40,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "webpack": "^3.10.0"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }

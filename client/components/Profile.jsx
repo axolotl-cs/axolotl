@@ -13,9 +13,10 @@ class Profile extends Component {
   render() {
     return (
       <div id="profile">
+
         <div className="imgStyle">
           <img src={this.props.user.image}/>
-        </div> 
+        </div>
         <div className="bio">
           <h4>Bio</h4>
           <p className="bioStyles"> {this.props.user.bio}</p>
@@ -31,7 +32,7 @@ class Profile extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default Profile;
