@@ -33,7 +33,7 @@ const Login = (props) => {
          <input type="submit" value={buttonText} onClick={() => {
            let username = document.getElementById('userIn').value;
            let password = document.getElementById('passIn').value;
-           let email = (props.isSignup) ? document.getElementById('passIn').value : null;
+           let email = (props.isSignup) ? document.getElementById('emailIn').value : null;
            console.log(username, password, email);
            props.clickFun(username, password, email);
          }}/>

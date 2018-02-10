@@ -64,8 +64,7 @@ loginController.signup = (req, res, next) => {
           // Add error handling...
           console.log(err);
         });
-      }
-      else {
+      } else {
         return res.json('Seats taken.');
       }
     })

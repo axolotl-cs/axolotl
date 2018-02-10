@@ -9,12 +9,10 @@ function getInitialState() {
   return {
     signup: false,
     user: null,
-    // user: {},
     feed: [],
-    // feed: [{username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}, {username: 'asdadsdad'}],
+    myProfile: true,
     edit: false,
     profile: null,
-    myProfile: true
   };
 }
 
@@ -58,12 +56,11 @@ class App extends Component {
     let that = this;
     return this.post('/login', {username, password}, function(response) {
       console.log(response);
-      let sep = that.seperateMyLeagues(response.myLeagues)
       that.setState(Object.assign(
         that.state,
         {
           user: response.user,
-          feed: response.feed,
+          feed: response.list,
         }
       ));
     });
@@ -89,36 +86,36 @@ class App extends Component {
   signup(username, password, email) {
     console.log('trying to signup', username, password, email);
     let that = this;
-    // return this.post('/signup', {username, password, email}, function(response) {
-    //   console.log(response);
-    //
-    //   that.setState(Object.assign(
-    //     that.state,
-    //     {
-    //       edit: true,
-    //       profile: response.user,
-    //       user: response.user,
-    //       feed: response.feed,
-    //       myProfile: true
-    //     }
-    //   ));
-    // });
-  }
-
-  updateProile(user) {
-    console.log('Editing User Profile', user);
-    let that = this;
-    return this.post('/profile/edit', user, function(response) {
+    return this.post('/signup', {username, password, email}, function(response) {
       console.log(response);
 
       that.setState(Object.assign(
         that.state,
         {
+          edit: true,
+          profile: response.user,
           user: response.user,
-          edit: false
+          feed: response.list,
+          myProfile: true
         }
       ));
     });
+  }
+
+  updateProile(user) {
+    console.log('Editing User Profile', user);
+    let that = this;
+    // return this.post('/profile/edit', user, function(response) {
+    //   console.log(response);
+    // 
+    //   that.setState(Object.assign(
+    //     that.state,
+    //     {
+    //       user: response.user,
+    //       edit: false
+    //     }
+    //   ));
+    // });
   }
 
   // when click connect button on another user
@@ -149,9 +146,9 @@ class App extends Component {
   }
 
   toggleEdit(user) {
-    console.log('Requesting connection with other user', user);
-    that.setState(Object.assign(
-      that.state,
+    console.log('Going to edit mode', user);
+    this.setState(Object.assign(
+      this.state,
       {edit: !this.state.edit}
     ));
   }
@@ -174,16 +171,18 @@ class App extends Component {
         <Login isSignup={this.state.signup} clickFun={clickFun} toggle={this.toggleSignup}/>
       )
     } else if (this.state.profile){
+      console.log("CORRECT ROUTE");
       let clickFun = (this.state.myProfile) ? this.toggleEdit : this.connect;
-      content = (
-        <Profile user={this.state.profile} edit={this.state.edit} clickFun={this.state.clickFun}/>
-      )
+      console.log('CLICK FUN');
+      content = <Profile user={ this.state.profile } edit={ this.state.edit } clickFun={ clickFun }
+      submit={ this.updateProile } myProfile={ this.state.myProfile }/>
+
     } else { // load feed
       content = (
         <Feed user={this.state.user} feed={this.state.feed} connect={this.connect}/>
       )
     }
-    // TODO: the #clear button doesn't work yet.
+
     return (
       <div>
         <h1> We are rendering APP</h1>
