@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-mongoose.connect('mongodb://localhost/axolotl');
+// mongoose.connect('mongodb://localhost/axolotl');
+
+// Hosting db on mlab
+mongoose.connect('mongodb://axol:ilovetesting@ds231228.mlab.com:31228/axolotl');
+console.log('Connected to mongodb');
 
 const userSchema = new Schema({
   username: { type: String, unique: true, require: true },
