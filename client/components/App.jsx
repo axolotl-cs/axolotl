@@ -16,19 +16,6 @@ function getInitialState() {
     myProfile: true,
     edit: false,
     profile: null,
-        // {
-        //   username: 'Star',
-        //   password: '45678',
-        //   location: 'Los Angeles',
-        //   email: 'star@stargmail.com',
-        //   invited: [], // Store the userId of the people you've invited to pair
-        //   connected: [], // Store the userId of the people you've connected with
-        //   bio: 'I am a geek. I love computers. I love everything about them. I spend eight to ten hours a day in front of a computer screen as I am coding, debugging, or discussing coding practices and methods with other programmers. When I am not programming, I am teaching about computers at the university or am researching and writing about computers as part of my academic work. I truly get excited when a new kernel of Linux is released or when a new Web application that does something never done before becomes available for beta testing. I am deeply impressed when I see smart and beautiful code that does something I know is hard to accomplish. ',
-        //   skills: 'Javascript, React, Redux, HTML, CSS, EJS',
-        //   interests: 'Musoc, Dancing, Hanging-Out',
-        //   image: 'https://i.pinimg.com/736x/e2/01/08/e20108982cdc8659a938c499ea656499--don-t-lie-so-funny.jpg',
-        // }
-         
   };
 }
 
@@ -171,8 +158,10 @@ class App extends Component {
     }
 
   viewProfile(user) {
+    console.log('usre', user);
+    console.log(typeof user.myProfile);
     console.log('Switching to Profile', this.state.user);
-    if (typeof user.myProfile !== 'boolean') {user = this.state.user};
+    if (typeof user.username !== 'string') {user = this.state.user};
     console.log('Switching to Profile', user);
     let that = this;
     let mp = (this.state.user === user);
@@ -180,7 +169,8 @@ class App extends Component {
       this.state,
       {
         profile: user,
-        myProfile: mp
+        myProfile: mp,
+        edit: false
       }
     ));
   }
@@ -239,7 +229,7 @@ class App extends Component {
 
     } else { // load feed
       content = (
-        <Feed user={this.state.user} feed={this.state.feed} connect={this.connect}/>
+        <Feed user={this.state.user} feed={this.state.feed} toProfile={this.viewProfile} connect={this.connect}/>
       )
     }
 
@@ -247,9 +237,7 @@ class App extends Component {
       <div>
         <h1> We are rendering APP</h1>
         {header}
-
         {content}
-      
       </div>
     );
   }
