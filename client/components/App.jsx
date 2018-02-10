@@ -8,8 +8,30 @@ import UserCards from './UserCards.jsx';
 function getInitialState() {
   return {
     signup: false,
-    user: null,
-    feed: [],
+    user: {
+      username: 'Star',
+      password: '45678',
+      location: 'Los Angeles',
+      email: 'star@stargmail.com',
+      invited: [], // Store the userId of the people you've invited to pair
+      connected: [], // Store the userId of the people you've connected with
+      bio: 'I am a geek. I love computers. I love everything about them. I spend eight to ten hours a day in front of a computer screen as I am coding, debugging, or discussing coding practices and methods with other programmers. When I am not programming, I am teaching about computers at the university or am researching and writing about computers as part of my academic work. I truly get excited when a new kernel of Linux is released or when a new Web application that does something never done before becomes available for beta testing. I am deeply impressed when I see smart and beautiful code that does something I know is hard to accomplish. ',
+      skills: 'Javascript, React, Redux, HTML, CSS, EJS',
+      interests: 'Musoc, Dancing, Hanging-Out',
+      image: 'https://i.pinimg.com/736x/e2/01/08/e20108982cdc8659a938c499ea656499--don-t-lie-so-funny.jpg',
+    },
+    feed: [{
+      username: 'Star',
+      password: '45678',
+      location: 'Los Angeles',
+      email: 'star@stargmail.com',
+      invited: [], // Store the userId of the people you've invited to pair
+      connected: [], // Store the userId of the people you've connected with
+      bio: 'I am a geek. I love computers. I love everything about them. I spend eight to ten hours a day in front of a computer screen as I am coding, debugging, or discussing coding practices and methods with other programmers. When I am not programming, I am teaching about computers at the university or am researching and writing about computers as part of my academic work. I truly get excited when a new kernel of Linux is released or when a new Web application that does something never done before becomes available for beta testing. I am deeply impressed when I see smart and beautiful code that does something I know is hard to accomplish. ',
+      skills: 'Javascript, React, Redux, HTML, CSS, EJS',
+      interests: 'Musoc, Dancing, Hanging-Out',
+      image: 'https://i.pinimg.com/736x/e2/01/08/e20108982cdc8659a938c499ea656499--don-t-lie-so-funny.jpg',
+    }],
     myProfile: true,
     edit: false,
     profile: null,
