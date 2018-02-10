@@ -138,7 +138,7 @@ class App extends Component {
 
         that.setState(Object.assign(
           that.state,
-          {user: user}
+          {user: response}
         ));
       });
     } else {
@@ -149,7 +149,7 @@ class App extends Component {
 
         that.setState(Object.assign(
           that.state,
-          {user: user}
+          {user: response}
         ));
       });
     }

@@ -43,11 +43,11 @@ class Profile extends Component {
         </div>
         <div className="bio">
           <h4>Bio</h4>
-          <input type="text" id="bioIn" defaultValue = {user.bio} className="bioStyles" disabled={(!this.props.edit) ? true : false} />
+          <input type="text" id="bioIn" defaultValue={user.bio} className="bioStyles" disabled={(!this.props.edit) ? true : false} />
         </div>
         <div className="skills">
           <h4>Skills</h4>
-          <input text='text' id="skillsIn" className="skillsStyles" defaultValue="Javscript" disabled={(!this.props.edit) ? true: false} />
+          <input text='text' id="skillsIn" className="skillsStyles" defaultValue={user.skills} disabled={(!this.props.edit) ? true: false} />
         </div>
         <div className="interests">
           <h4>Interests</h4>

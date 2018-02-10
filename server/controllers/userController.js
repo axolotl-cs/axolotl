@@ -94,7 +94,7 @@ userController.update = (req, res) => {
   User.update({ username: user.username }, updates)
     .then(() => {
       User.find({username: user.username }, (err, user) => {
-        res.status(200).json(user);
+        res.status(200).json(user[0]);
       });
     })
     .catch((err) => {
