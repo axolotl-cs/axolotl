@@ -121,14 +121,14 @@ class App extends Component {
   connect(user) {
     console.log('Requesting connection with other user', user);
     let that = this;
-    // return this.post('/profil/edit', user, function(response) {
-    //   console.log(response);
-    //
-    //   that.setState(Object.assign(
-    //     that.state,
-    //     //{user: response.user}
-    //   ));
-    // });
+    return this.post('/invite', {username: that.state.user.username, target: user.username }, function(response) {
+      console.log(response);
+
+      that.setState(Object.assign(
+        that.state,
+        //{user: response.user}
+      ));
+    });
   }
 
   viewProfile(user) {
@@ -153,14 +153,6 @@ class App extends Component {
   }
 
   render() {
-    // const { rows, turn, winner, gameList } = this.state;
-    // const handleClick = this.handleClick;
-
-    // so I can pass into map
-    // const chooseLeague = this.chooseLeague;
-    // const joinLeague = this.joinLeague;
-    // const assignPlayer = this.assignPlayer;
-
     console.log(this.state);
 
     let content;
