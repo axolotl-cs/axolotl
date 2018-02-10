@@ -5,6 +5,7 @@ import Profile from './Profile.jsx';
 import Feed from './Feed.jsx';
 import UserCards from './UserCards.jsx';
 
+
 function getInitialState() {
   return {
     signup: false,
@@ -154,13 +155,13 @@ class App extends Component {
   }
 
   render() {
-    // const { rows, turn, winner, gameList } = this.state;
-    // const handleClick = this.handleClick;
+    const { rows, turn, winner, gameList } = this.state;
+    const handleClick = this.handleClick;
 
-    // so I can pass into map
-    // const chooseLeague = this.chooseLeague;
-    // const joinLeague = this.joinLeague;
-    // const assignPlayer = this.assignPlayer;
+    //so I can pass into map
+    const chooseLeague = this.chooseLeague;
+    const joinLeague = this.joinLeague;
+    const assignPlayer = this.assignPlayer;
 
     console.log(this.state);
 
@@ -185,10 +186,10 @@ class App extends Component {
     // TODO: the #clear button doesn't work yet.
     return (
       <div>
-        <h1> We are rendering APP</h1>
         {content}
       </div>
     );
+
   }
 }
 
