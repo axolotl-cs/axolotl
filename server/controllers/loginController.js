@@ -37,30 +37,40 @@ loginController.login = (req, res, next) => {
 // Handle new user creation
 loginController.signup = (req, res, next) => {
   const { username, password, email } = req.body;
-  const newUser = new User({ username, password, email });
+  // const newUser = new User({ username, password, email });
   // Object to respond to client with
   const data = {};
   // Save the user and send back the user object
-  newUser.save()
-    .then(() => {
-      User.find({ username }, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        data.user = result[0];
-      });
+  User.find({ username }, (err, result) => {
+    if (err) throw err;
+    if (result.length === 0) {
+      const newUser = new User({ username, password, email });
+      newUser.save()
+        .then(() => {
+          User.find({ username }, (err, result) => {
+            if (err) throw err;
+            data.user = result[0];
+          });
+        })
+        .then(() => {
+          User.find({}, (err, userList) => {
+            if (err) throw err;
+            data.list = userList;
+            res.status(200).json(data);
+            return next();
+          });
+        })
+        .catch((err) => {
+          // Add error handling...
+          console.log(err);
+        });
+      } else {
+        return res.json('Seats taken.');
+      }
     })
-    .then(() => {
-      User.find({}, (err, userList) => {
-        if (err) throw err;
-        data.list = userList;
-        res.status(200).json(data);
-        return next();
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      // Add error handling...
-      console.log(err);
-    });
 };
 
 module.exports = loginController;
