@@ -38,5 +38,6 @@
     "history": "^4.7.2",
     "react-router": "^4.2.0",
     "webpack": "^3.10.0"
-  }
+  },
+  "proxy": "http://http://localhost:5000/"
 }
