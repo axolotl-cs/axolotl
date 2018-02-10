@@ -14,6 +14,7 @@ const userSchema = new Schema({
   location: { type: String, default: '' },
   email: String,
   invited: [String], // Store the userId of the people you've invited to pair
+  requests: [String], // List of people who have requested to pair with you
   connected: [String], // Store the userId of the people you've connected with
   bio: { type: String, default: '' },
   skills: { type: String, default: '' },

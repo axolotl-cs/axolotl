@@ -27,8 +27,13 @@ userController.invite = (req, res) => {
   const { username, target } = req.body;
   User.update({ username }, { $push: { invited: target } })
     .then(() => {
-      User.find({}, (err, userList) => {
-        res.status(200).json(userList);
+      User.find({ username }, (err, user) => {
+        res.status(200).json(user[0]);
+      });
+    })
+    .then(() => {
+      User.update({ username: target }, { $push: { requests: username } }, (err) => {
+        if (err) throw err;
       });
     })
     .catch((err) => {
@@ -43,9 +48,14 @@ userController.connect = (req, res) => {
   let email = '';
   User.update({ username }, { $push: { connected: target } })
     .then(() => {
-      User.find({}, (err, userList) => {
+      User.find({ username }, (err, user) => {
         if (err) throw err;
-        res.status(200).json(userList);
+        res.status(200).json(user[0]);
+      });
+    })
+    .then(() => {
+      User.update({ username: target }, { $push: { connected: username } }, (err) => {
+        if (err) throw err;
       });
     })
     .then(() => {
