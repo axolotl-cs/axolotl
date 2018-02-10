@@ -105,17 +105,17 @@ class App extends Component {
   updateProile(user) {
     console.log('Editing User Profile', user);
     let that = this;
-    return this.post('/profile/edit', user, function(response) {
-      console.log(response);
-
-      that.setState(Object.assign(
-        that.state,
-        {
-          user: response.user,
-          edit: false
-        }
-      ));
-    });
+    // return this.post('/profile/edit', user, function(response) {
+    //   console.log(response);
+    // 
+    //   that.setState(Object.assign(
+    //     that.state,
+    //     {
+    //       user: response.user,
+    //       edit: false
+    //     }
+    //   ));
+    // });
   }
 
   // when click connect button on another user
@@ -147,8 +147,8 @@ class App extends Component {
 
   toggleEdit(user) {
     console.log('Going to edit mode', user);
-    that.setState(Object.assign(
-      that.state,
+    this.setState(Object.assign(
+      this.state,
       {edit: !this.state.edit}
     ));
   }
@@ -182,7 +182,7 @@ class App extends Component {
         <Feed user={this.state.user} feed={this.state.feed} connect={this.connect}/>
       )
     }
-    // TODO: the #clear button doesn't work yet.
+
     return (
       <div>
         <h1> We are rendering APP</h1>
