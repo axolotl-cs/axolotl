@@ -11,13 +11,13 @@ console.log('Connected to mongodb');
 const userSchema = new Schema({
   username: { type: String, unique: true, require: true },
   password: { type: String, require: true },
-  location: { type: String },
+  location: { type: String, default: '' },
   email: String,
   invited: [String], // Store the userId of the people you've invited to pair
   connected: [String], // Store the userId of the people you've connected with
-  bio: String,
-  skills: String,
-  interests: String,
+  bio: { type: String, default: '' },
+  skills: { type: String, default: '' },
+  interests: { type: String, default: '' },
   image: { data: Buffer, contentType: String },
 });
 

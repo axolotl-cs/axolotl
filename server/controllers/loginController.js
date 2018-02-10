@@ -69,6 +69,7 @@ loginController.signup = (req, res, next) => {
       }
     })
       .catch((err) => {
+        // Add error handling...
         console.log(err);
       });
 };

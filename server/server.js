@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '../')));
 app.use(bodyParser.json());
 
 // Send root react page
-app.get('/', (req, res) => {res.sendFile('index.html');});
+app.get('/', (req, res) => { res.sendFile('index.html'); });
 
 // User logs in
 app.post('/login', loginController.login);
