@@ -14,8 +14,8 @@ class Profile extends Component {
 
   render() {
 
-    // let connectOrEdit = (!this.props.myProfile) ? 'Connect' : 'Edit';
-    let connectOrEdit = 'Connect';
+    let connectOrEdit = (!this.props.myProfile) ? 'Connect' : 'Edit';
+    //let connectOrEdit = (this.props.myProfile) ? 'Edit' : 'Connect';
     let user = this.props.user;
     let clickFun = this.props.clickFun;
     console.log('user', user);
