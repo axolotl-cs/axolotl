@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 
 const Login = (props) => {
   console.log(props);
+
+  //buttons change text when in signup / login
   let heading = (props.isSignup) ? 'Sign Up' : 'Log In';
   let buttonText = (props.isSignup) ? 'Sign Up' : 'Log In';
   let toggleText = (props.isSignup) ? 'Log In' : 'Sign Up';
+
+  // only added while in signup mode
   let extra = (
     <div>
     <label>
@@ -16,6 +20,7 @@ const Login = (props) => {
     </div>
   )
   extra = (props.isSignup) ?  extra : '';
+
   return (
       <div>
         <h3>{heading}</h3>
